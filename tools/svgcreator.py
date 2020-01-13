@@ -44,11 +44,11 @@ class SVG:
 		output += f'\t<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="grey" style="stroke:rgb(0,0,0);stroke-width:1"/>\n'
 		output += f'\t<text x="{x + w / 2}" y="{y + size}" text-anchor="middle" font-family="Verdana" font-size="{size}" fill="black">{ _class.name}</text>\n'
 		output += f'\t<text x="{x + w / 2}" y="{y + 2 * size}" text-anchor="middle" font-family="Verdana" font-size="{size}" fill="black">{_info}</text>\n'
-		output += self.print_attributs(x, y, w, h, size,_class)
+		output += self.print_attributs(x, y, w,  size,_class)
 		output += '</g>\n'
 		return output
 
-	def print_attributs(self, x, y, w, h, size,_class):
+	def print_attributs(self, x, y, w, size,_class):
 		output = ""
 		i = 3
 		for blocs in _class.attributs_bloc.split("-"):
