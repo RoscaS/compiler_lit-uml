@@ -90,23 +90,22 @@ def compile(self):
     replace = lambda c, idx: c.children[idx].tok.replace("'", "")
     link = lambda c: creator.add_link(replace(c, 0), c.assign, replace(c, 1))
 
-    # output = ""
-    # for c in self.children:
-    #     out = c.compile()
-    #     if out is not None:
-    #         # _class1 = replace(c, 0)
-    #         # _class2 = replace(c, 1)
-    #         # creator.add_link(replace(c, 0), c.assign, replace(c, 1))
-    #         link(c)
-    #         output += out
-    # return output
+    output = ""
+    for c in self.children:
+        out = c.compile()
+        if out is not None:
+            # _class1 = replace(c, 0)
+            # _class2 = replace(c, 1)
+            # creator.add_link(replace(c, 0), c.assign, replace(c, 1))
+            link(c)
+            output += out
+    return output
 
     # output = ["yes"]
-    output = [i for i in children(self.children[1:]) if i is not None]
-    for i in output:
-        link(i)
-
-    return "".join(output)
+    # output = [i for i in children(self.children[1:]) if i is not None]
+    # for i in output:
+    #     link(i)
+    # return output
 
 @addToClass(AST.LinkNode)
 def compile(self):
@@ -150,6 +149,9 @@ def compile(self):
         if out is not None:
             output += f"{out}-"
     return output
+
+    # return "".join(f"{i}-," for i in children(self.children) if i is not None)
+
 
 
 if __name__ == '__main__':
