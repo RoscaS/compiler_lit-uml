@@ -7,26 +7,27 @@
     ]
 }
 
-{ UneAutre("test"),
+{
+    UneAutre("test"),
     [
         "attributs",
     ]
 }
 
 {
- ClasseAbstraite("<<abstract>>"),
-     [
-         "attributs1",
-         "attributs2",
-     ],
+    ClasseAbstraite("<<abstract>>"),
     [
-      "attributs1",
-      "attr",
+        "attributs1",
+        "attributs2",
     ],
-        [
-          "attributs1",
-          "attributs2",
-        ]
+    [
+        "attributs1",
+        "attr",
+    ],
+    [
+        "attributs1",
+        "attributs2",
+    ]
 }
 
 
