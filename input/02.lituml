@@ -16,7 +16,7 @@
  ClasseAbstraite("<<abstract>>"),
      [
          "attributs1",
-         "attributs2",
+         "attributs2"
      ],
     [
       "attributs1",
