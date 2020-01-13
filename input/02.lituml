@@ -24,10 +24,4 @@
     ]
 }
 
-
----
-
-MaClasse <-- UneAutre
-UneAutre <-- MaClasse
-ClasseAbstraite <-- MaClasse
-
+----

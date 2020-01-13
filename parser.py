@@ -21,7 +21,8 @@ vars = {}
 
 def p_program(p):
 	'''program : classes SEPARATOR links
-		| classes SEPARATOR'''
+		| classes SEPARATOR
+		| classes '''
 	try:
 		p[0] = AST.ProgramNode([p[1]] + [p[3]])
 	except:
