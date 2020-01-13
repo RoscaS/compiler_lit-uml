@@ -19,8 +19,14 @@ from tools.helpers import get_arg, init_folders
 vars = {}
 
 def p_program(p):
-	'''program : classes SEPARATOR links'''
-	p[0] = AST.ProgramNode([p[1]] + [p[3]])
+	'''program : classes SEPARATOR links
+		|	classes SEPARATOR'''
+	try:
+		p[0] = AST.ProgramNode([p[1]] + [p[3]])
+	except:
+		p[0] = AST.ProgramNode([p[1]])
+
+
 
 # Links part
 def p_links(p):
@@ -118,4 +124,5 @@ if __name__ == "__main__":
 	ast = yacc.parse(prog)
 	graph = ast.makegraphicaltree()
 	graph.write_jpg(OUTPUT)
+	print(ast)
 	print("wrote AST representation to", OUTPUT)
