@@ -75,11 +75,11 @@ def p_classes_end(p):
 # Regle pour la dernière classe
 def p_object(p):
 	''' object : '{' IDENTIFIER  info ',' attributs_blocs '}'
-		|  '{' IDENTIFIER ',' attributs_bloc '}' '''
+		|  '{' IDENTIFIER info '}' '''
 	try:
 		p[0] = AST.ClassNode(p[2], [p[3]] + [p[5]])
 	except:
-		p[0] = AST.ClassNode(p[2], [p[4]])
+		p[0] = AST.ClassNode(p[2], [p[3]])
 
 # Regle pour une classe avec le nom, l'information, et les blocs d'attributs
 def p_attributs_blocs(p):
@@ -124,6 +124,9 @@ def p_info(p):
 # Permet de sortir sans avoir des erreurs de valeur null
 def p_statement(p):
 	''' statement : '' '''
+
+
+	p[0] = AST.TokenNode("")
 
 # Error, pas de regle affiche la ligne de l'erreur
 def p_error(p):

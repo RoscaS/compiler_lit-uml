@@ -1,4 +1,7 @@
 {
+    House("")
+}
+{
 
     MaClasse("Info"),
     [
@@ -6,22 +9,32 @@
     ]
 }
 
-{ UneAutre(""),
+{
+    UneAutre("test"),
     [
         "attributs",
     ]
 }
 
 {
- ClasseAbstraite("<<abstract>>"),
-     [
-         "attributs1",
-         "attributs2"
-     ],
+    ClasseAbstraite("<<abstract>>"),
     [
-      "attributs1",
-      "attr",
+        "attributs1",
+        "attributs2",
+    ],
+    [
+        "attributs1",
+        "attr",
+    ],
+    [
+        "attributs1",
+        "attributs2",
     ]
 }
 
+
+
 ----
+
+UneAutre <-- ClasseAbstraite
+MaClasse <-- UneAutre
