@@ -30,7 +30,7 @@ def p_program(p):
 
 
 # LINKS PART
-# Regle pour avoir tous les liens récursives
+# Regle pour avoir tous les liens récursivement
 def p_links(p):
 	'''links : statement
 		| link links'''
@@ -53,7 +53,8 @@ def p_link(p):
 	p[0] = AST.LinkNode(p[2], [AST.TokenNode(p[1]), AST.TokenNode(p[3])])
 
 
-# classes part
+# CLASSES PART
+# Regle pour toutes les classes
 def p_classes(p):
 	'''classes : statement
 		| object classes'''
@@ -62,8 +63,7 @@ def p_classes(p):
 	except:
 		p[0]=p[1]
 
-# CLASSES PART
-# Regle pour toutes les classes
+# Regle pour la dernière classe
 def p_classes_end(p):
 	'''classes : object'''
 	try:
@@ -72,7 +72,8 @@ def p_classes_end(p):
 		p[0]=p[1]
 
 
-# Regle pour la dernière classe
+
+# Regle pour une classe avec le nom, l'information, et les blocs d'attributs
 def p_object(p):
 	''' object : '{' IDENTIFIER  info ',' attributs_blocs '}'
 		|  '{' IDENTIFIER info '}' '''
@@ -81,7 +82,7 @@ def p_object(p):
 	except:
 		p[0] = AST.ClassNode(p[2], [p[3]])
 
-# Regle pour une classe avec le nom, l'information, et les blocs d'attributs
+# Regle pour les blocs d'attributs
 def p_attributs_blocs(p):
 	''' attributs_blocs : statement
 			| '[' attributs_bloc ']' ',' attributs_blocs'''
@@ -90,10 +91,12 @@ def p_attributs_blocs(p):
 	except:
 		p[0]=p[1]
 
-# Regle pour l'information de la classe
+# Regle pour les blocs d'attributs
 def p_attributs_blocs_end(p):
 	''' attributs_blocs : '[' attributs_bloc ']' '''
 	p[0] = AST.AttributsBlocsNode(p[2])
+
+
 
 # Regle pour les attributs dans un blocs
 def p_attributs_bloc(p):
@@ -116,7 +119,7 @@ def p_attributs(p):
 		'''
 	p[0] = AST.TokenNode(p[1])
 
-
+# Regle pour la dernière classe
 def p_info(p):
 	''' info : '(' STRING ')' '''
 	p[0] = AST.TokenNode(p[2])

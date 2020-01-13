@@ -1,0 +1,8 @@
+{House("<<abstract>>"),
+["- name : string",],
+["+ sell(): float",
+"+ clean()"]}
+{Room(""),
+["- size : double",]}
+---
+House <-- Room Room <-- House
