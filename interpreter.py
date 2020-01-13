@@ -16,18 +16,25 @@ from tools.svgcreator import SVG
 creator = SVG()
 vars = {}
 
+def children(children):
+    return [c.compile() for c in children]
+
+
 @addToClass(AST.ProgramNode)
 def compile(self):
     """
     ProgramNode
     read each children and concatenate the output"""
-    output = ''
-    for c in self.children:
-        out = c.compile()
+    # output = ''
+    # for c in self.children:
+    #     out = c.compile()
+    #
+    #     if out is not None:
+    #         output += out
+    # return output
 
-        if out is not None:
-            output += out
-    return output
+    return "".join(i for i in children(self.children) if i is not None)
+
 
 @addToClass(AST.TokenNode)
 def compile(self):
@@ -45,12 +52,14 @@ def compile(self):
     """
     ClassesNode
     """
-    output = ""
-    for c in self.children:
-        out = c.compile()
-        if out is not None:
-            output += out
-    return output
+    # output = ""
+    # for c in self.children:
+    #     out = c.compile()
+    #     if out is not None:
+    #         output += out
+    # return output
+    return "".join(i for i in children(self.children) if i is not None)
+
 
 # DOUBLON ???
 @addToClass(AST.ClassNode)
@@ -58,53 +67,77 @@ def compile(self):
     """
     ClassNode
     """
-    output = ""
     creator.add_class(self.name, self.children[0].compile())
-    for c in self.children[1:]:
-        out = c.compile()
-        if out is not None:
-            creator.add_attributs(self.name, out)
-            output += out
-    return output
+    # output = ""
+    # for c in self.children[1:]:
+    #     out = c.compile()
+    #     if out is not None:
+    #         creator.add_attributs(self.name, out)
+    #         output += out
+    # return output
+    output = [i for i in children(self.children[1:]) if i is not None]
+    for i in output:
+        creator.add_attributs(self.name, i)
+
+    return "".join(output)
+
 
 @addToClass(AST.LinksNode)
 def compile(self):
     """
     LinksNode
     """
-    output = ""
-    for c in self.children:
-        out = c.compile()
-        if out is not None:
-            _class1 = c.children[0].tok.replace("'", "")
-            _class2 = c.children[1].tok.replace("'", "")
-            creator.add_link(_class1, c.assign, _class2)
-            output += out
-    return output
+    replace = lambda c, idx: c.children[idx].tok.replace("'", "")
+    link = lambda c: creator.add_link(replace(c, 0), c.assign, replace(c, 1))
+
+    # output = ""
+    # for c in self.children:
+    #     out = c.compile()
+    #     if out is not None:
+    #         # _class1 = replace(c, 0)
+    #         # _class2 = replace(c, 1)
+    #         # creator.add_link(replace(c, 0), c.assign, replace(c, 1))
+    #         link(c)
+    #         output += out
+    # return output
+
+    # output = ["yes"]
+    output = [i for i in children(self.children[1:]) if i is not None]
+    for i in output:
+        link(i)
+
+    return "".join(output)
 
 @addToClass(AST.LinkNode)
 def compile(self):
     """
     LinkNode
     """
-    output = ""
-    for c in self.children:
-        out = c.compile()
-        if out is not None:
-            output += out
-    return output
+    # output = ""
+    # for c in self.children:
+    #     out = c.compile()
+    #     if out is not None:
+    #         output += out
+    # return output
+
+    return "".join(i for i in children(self.children) if i is not None)
+
+
+
+
 
 @addToClass(AST.AttributsBlocNode)
 def compile(self):
     """
     AttributsBlocNode
     """
-    output = ""
-    for c in self.children:
-        out = c.compile()
-        if out is not None:
-            output += f"{out},"
-    return output
+    # output = ""
+    # for c in self.children:
+    #     out = c.compile()
+    #     if out is not None:
+    #         output += f"{out},"
+    return "".join(f"{i}," for i in children(self.children) if i is not None)
+
 
 @addToClass(AST.AttributsBlocsNode)
 def compile(self):
