@@ -16,5 +16,5 @@
 * `python3 parser.py input/XX.lituml` where `XX` are two digits
 refering to a file inside `/input` to generate the AST tree.
  
-See /docs to read about the syntax specifications._
+See /docs to read about syntax specifications.
 
