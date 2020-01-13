@@ -14,10 +14,14 @@ On linux you might need to specify `pip3` instead of `pip`
 
 ### Test it
 Inside the root folder:
-* `python interpreter.py input/XX.lituml` where `XX` are two digits
- refering to a file inside `/input` to generate an UML diagram.
 * `python parser.py input/XX.lituml` where `XX` are two digits
-refering to a file inside `/input` to generate the AST tree.
+refering to a file inside `/input` to display lexems.
+* `python parser.py input/XX.lituml` where `XX` are two digits
+refering to a file inside `/input` to generate the AST tree inside /out folder.
+* `python interpreter.py input/XX.lituml` where `XX` are two digits
+ refering to a file inside `/input` to generate an UML diagram inside /out
+  folder.
+
 
 On linux you might need to specify `python3` instead of `python`
 See /docs to read about syntax specifications.
