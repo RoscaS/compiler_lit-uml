@@ -108,7 +108,9 @@ def p_attributs_bloc_end(p):
 
 # Regle pour un attribut
 def p_attributs(p):
-	''' attributs : STRING ',' '''
+	''' attributs : STRING ','
+				| STRING
+		'''
 	p[0] = AST.TokenNode(p[1])
 
 
