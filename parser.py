@@ -5,6 +5,7 @@ HE-ARC
 janvier 2020
 
 DESCRIPTION
+Module qui permet de donner des règles aux symboles déclarés dans lex
 """
 
 
@@ -27,8 +28,8 @@ def p_program(p):
 		p[0] = AST.ProgramNode([p[1]])
 
 
-
-# Links part
+# LINKS PART
+# Regle pour avoir tous les liens récursives
 def p_links(p):
 	'''links : statement
 		| link links'''
@@ -37,6 +38,7 @@ def p_links(p):
 	except:
 		p[0]=p[1]
 
+# Regle pour le dernier lien
 def p_links_end(p):
 	'''links : link '''
 	try:
@@ -44,6 +46,7 @@ def p_links_end(p):
 	except:
 		p[0] = p[1]
 
+# Regle pour les liens entre les classes
 def p_link(p):
 	'''link : IDENTIFIER ARROW IDENTIFIER'''
 	p[0] = AST.LinkNode(p[2], [AST.TokenNode(p[1]), AST.TokenNode(p[3])])
@@ -58,6 +61,8 @@ def p_classes(p):
 	except:
 		p[0]=p[1]
 
+# CLASSES PART
+# Regle pour toutes les classes
 def p_classes_end(p):
 	'''classes : object'''
 	try:
@@ -66,11 +71,13 @@ def p_classes_end(p):
 		p[0]=p[1]
 
 
+# Regle pour la dernière classe
 def p_object(p):
 	''' object : IDENTIFIER ',' attributs_bloc
 		| '{' IDENTIFIER  info ',' attributs_blocs '}' '''
 	p[0] = AST.ClassNode(p[2], [p[3]] + [p[5]])
 
+# Regle pour une classe avec le nom, l'information, et les blocs d'attributs
 def p_attributs_blocs(p):
 	''' attributs_blocs : statement
 			| '[' attributs_bloc ']' ',' attributs_blocs'''
@@ -79,10 +86,12 @@ def p_attributs_blocs(p):
 	except:
 		p[0]=p[1]
 
+# Regle pour l'information de la classe
 def p_attributs_blocs_end(p):
 	''' attributs_blocs : '[' attributs_bloc ']' '''
 	p[0] = AST.AttributsBlocsNode(p[2])
 
+# Regle pour les attributs dans un blocs
 def p_attributs_bloc(p):
 	''' attributs_bloc : statement
 				| attributs attributs_bloc'''
@@ -91,10 +100,12 @@ def p_attributs_bloc(p):
 	except:
 		p[0]=p[1]
 
+# Regle pour le dernier attribut dans un blocs
 def p_attributs_bloc_end(p):
 	''' attributs_bloc :  attributs '''
 	p[0] = AST.AttributsBlocNode(p[1])
 
+# Regle pour un attribut
 def p_attributs(p):
 	''' attributs : STRING ',' '''
 	p[0] = AST.TokenNode(p[1])
@@ -108,6 +119,7 @@ def p_info(p):
 def p_statement(p):
 	''' statement : '' '''
 
+# Error, pas de regle affiche la ligne de l'erreur
 def p_error(p):
 	print(f"Syntax error in line {p.lineno}")
 

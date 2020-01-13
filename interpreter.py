@@ -5,6 +5,8 @@ HE-ARC
 janvier 2020
 
 DESCRIPTION
+Module qui permet de récupérer les information de l'arbre.
+Il interprète les noeuds et les envoient dans le svgcreator
 """
 
 import AST

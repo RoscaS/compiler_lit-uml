@@ -5,6 +5,9 @@ HE-ARC
 janvier 2020
 
 DESCRIPTION
+
+Class qui permet la création de balise svg
+Il récupère les liens et les classes à afficher
 """
 
 
