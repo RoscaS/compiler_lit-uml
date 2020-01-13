@@ -1,10 +1,46 @@
 {
+<<<<<<< HEAD
     Room(""),
     [
         "- size : double",
+=======
+    MaClasse("Info"),
+    [
+        "attributs",
+    ]
+}
+
+{ UneAutre("test"),
+    [
+        "attributs",
+    ]
+}
+
+{
+ ClasseAbstraite("<<abstract>>"),
+     [
+         "attributs1",
+         "attributs2",
+     ],
+    [
+      "attributs1",
+      "attr",
+>>>>>>> a091c0d641f8ec979f9dbee523d8333348f21daf
     ],
 	 [
 		  "+ getPrice() : double",
 	 ]
 }
+<<<<<<< HEAD
 ----
+=======
+
+
+
+---
+
+MaClasse <-- UneAutre
+UneAutre <-- MaClasse
+ClasseAbstraite <-- MaClasse
+
+>>>>>>> a091c0d641f8ec979f9dbee523d8333348f21daf
