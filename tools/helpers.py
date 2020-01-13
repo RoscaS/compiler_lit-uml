@@ -1,5 +1,4 @@
-import os
-import sys
+import os, sys
 
 GENERATED_FOLDER = "generated"
 OUT_FOLDER = "out"

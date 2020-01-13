@@ -7,13 +7,13 @@ janvier 2020
 DESCRIPTION
 """
 
-import os
 
 import ply.yacc as yacc
 import AST
 
 from lex import tokens
 # from lex import tokens
+
 from tools.helpers import get_arg, init_folders
 
 vars = {}

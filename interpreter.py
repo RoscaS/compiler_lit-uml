@@ -9,8 +9,8 @@ DESCRIPTION
 
 import AST
 from AST import addToClass
-from tools.helpers import get_arg, OUT_FOLDER, get_program_name
 
+from tools.helpers import get_arg, OUT_FOLDER, get_program_name
 from tools.svgcreator import SVG
 
 creator = SVG()
