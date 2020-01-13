@@ -82,30 +82,66 @@ def compile(self):
     return "".join(output)
 
 
+
+
+
+
 @addToClass(AST.LinksNode)
 def compile(self):
     """
     LinksNode
     """
-    replace = lambda c, idx: c.children[idx].tok.replace("'", "")
-    link = lambda c: creator.add_link(replace(c, 0), c.assign, replace(c, 1))
-
-    output = ""
-    for c in self.children:
-        out = c.compile()
-        if out is not None:
-            # _class1 = replace(c, 0)
-            # _class2 = replace(c, 1)
-            # creator.add_link(replace(c, 0), c.assign, replace(c, 1))
-            link(c)
-            output += out
-    return output
-
-    # output = ["yes"]
-    # output = [i for i in children(self.children[1:]) if i is not None]
-    # for i in output:
-    #     link(i)
+    # output = ""
+    # for c in self.children:
+    #     out = c.compile()
+    #     if out is not None:
+    #         _class1 = c.children[0].tok.replace("'", "")
+    #         _class2 = c.children[1].tok.replace("'", "")
+    #         creator.add_link(_class1, c.assign, _class2)
+    #         output += out
+    #
+    # print(output)
+    return None
     # return output
+
+
+
+# @addToClass(AST.LinksNode)
+# def compile(self):
+#     """
+#     LinksNode
+#     """
+#     replace = lambda c, idx: c.children[idx].tok.replace("'", "")
+#     link = lambda c: creator.add_link(replace(c, 0), c.assign, replace(c, 1))
+#
+#     output = ""
+#     for c in self.children:
+#         out = c.compile()
+#         if out is not None:
+#             # _class1 = replace(c, 0)
+#             # _class2 = replace(c, 1)
+#             # creator.add_link(replace(c, 0), c.assign, replace(c, 1))
+#             link(c)
+#             output += out
+#
+#
+#
+#     x = [i for i in children(self.children) if i is not None]
+#     print(x)
+#     print(output)
+#     print("\n\n\n")
+#     # output = [i for i in children(self.children) if i is not None]
+#     # for i in output:
+#     #     link(i)
+#
+#
+#     return "".join(output)
+
+
+
+
+
+
 
 @addToClass(AST.LinkNode)
 def compile(self):
