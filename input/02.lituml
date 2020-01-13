@@ -1,6 +1,5 @@
-// Ceci est un commentaire
-//
 {
+
     MaClasse("Info"),
     [
         "attributs",
@@ -30,11 +29,4 @@
     ]
 }
 
-
-
----
-
-MaClasse <-- UneAutre
-UneAutre <-- MaClasse
-ClasseAbstraite <-- MaClasse
-
+----

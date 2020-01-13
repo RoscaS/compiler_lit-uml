@@ -5,6 +5,8 @@ HE-ARC
 janvier 2020
 
 DESCRIPTION
+Module qui permet de récupérer les information de l'arbre.
+Interprète les noeuds et les envoie dans le svgcreator
 """
 
 import AST
@@ -73,12 +75,12 @@ def compile(self):
 @addToClass(AST.AttributsBlocNode)
 def compile(self):
     """ AttributsBlocNode """
-    return join_children(self.children, ",")
+    return join_children(self.children, "/")
 
 @addToClass(AST.AttributsBlocsNode)
 def compile(self):
     """ AttributsBlocsNode """
-    return join_children(self.children, "-,")
+    return join_children(self.children, "|")
 
 if __name__ == '__main__':
     from parser import parse

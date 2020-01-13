@@ -5,6 +5,7 @@ HE-ARC
 janvier 2020
 
 DESCRIPTION
+Analyseur lexical, permet de tokenizer les chaînes de caractères
 """
 
 import ply.lex as lex

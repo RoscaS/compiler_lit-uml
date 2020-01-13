@@ -5,19 +5,24 @@ HE-ARC
 janvier 2020
 
 DESCRIPTION
+
+Class qui permet la création de balise svg
+Il récupère les liens et les classes à afficher
 """
 
-
+# classe qui détient les classes et liens de tout l'arbre
 class SVG:
 	def __init__(self):
 		self.classes = []
 		self.links = []
 		self.id = 0
 
+	# ajoute une classe dans la liste et lui donne un id pour pouvoir l'identifier
 	def add_class(self, name, info):
 		self.classes.append(Class(name, info, self.id))
 		self.id += 1
 
+	# retourne la string de toutes les balises svg
 	def __str__(self):
 		w = 100
 		h = 200
@@ -38,44 +43,52 @@ class SVG:
 		output += '</svg>'
 		return output
 
+	# retourne rectangle avec son nom d'un objet
 	def print_class(self, x, y, w, h, size, _class):
 		_info = _class.info.replace('<', '&lt;').replace('>', '&gt;')
 		output = '<g>\n'
 		output += f'\t<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="grey" style="stroke:rgb(0,0,0);stroke-width:1"/>\n'
 		output += f'\t<text x="{x + w / 2}" y="{y + size}" text-anchor="middle" font-family="Verdana" font-size="{size}" fill="black">{ _class.name}</text>\n'
 		output += f'\t<text x="{x + w / 2}" y="{y + 2 * size}" text-anchor="middle" font-family="Verdana" font-size="{size}" fill="black">{_info}</text>\n'
-		output += self.print_attributs(x, y, w, h, size,_class)
+		output += self.print_attributs(x, y, w,  size,_class)
 		output += '</g>\n'
 		return output
 
-	def print_attributs(self, x, y, w, h, size,_class):
+	# retourne les attributs pour une classe
+	def print_attributs(self, x, y, w, size,_class):
 		output = ""
 		i = 3
-		for blocs in _class.attributs_bloc.split("-"):
+		for blocs in _class.attributs_bloc.split("|"):
 			output += f'\t<line x1="{x}" y1="{y + i * size}" x2="{x + w}" y2="{y +  i * size}" style="stroke:rgb(0,0,0);stroke-width:1" />\n'
 			i+= 1
-			for attribut in blocs.split(","):
+			for attribut in blocs.split("/"):
 				output += f'\t<text x="{x+5}" y="{y + size * i}"  font-family="Verdana" font-size="{size}" fill="black">{attribut}</text>\n'
 				i+=1
 		return output
 
+	# retourne les liens avec la position de début et de fin
 	def print_link(self, x1, y1, x2, y2, h):
 		output = f'<polyline points = "{x1},{y1} {x1},{y1+h} {x2},{y1+h} {x2},{y2}" style = "fill:none;stroke:black;stroke-width:1"/>\n'
 		output += f'<polyline points = "{x1-10},{y1+10} {x1},{y1} {x1+10},{y1+10}" style = "fill:none;stroke:black;stroke-width:1"/>\n'
 		return output
 
+	# ajout un lien dans la list
 	def add_link(self, class1, assign, class2):
 		self.links.append(Link(class1,assign, class2))
 
+
+	# trouve l'id de la classe
 	def find_id(self, name):
 		for _class in self.classes:
 			if _class.name == name:
 				return _class.id
 		return -1
 
+	# ajout des attributs dans la classe
 	def add_attributs(self,_class, attribut):
 		self.classes[self.find_id(_class)].attributs_bloc = attribut
 
+# classe Class qui définit une classe
 class Class:
 	def __init__(self, name, info, id):
 		self.info = info
@@ -83,7 +96,7 @@ class Class:
 		self.attributs_bloc = ""
 		self.id = id
 
-
+# classe Link qui définit une relation
 class Link:
 	def __init__(self, class1, relation, class2):
 		self.class1 = class1
