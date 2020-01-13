@@ -51,10 +51,10 @@ class SVG:
 	def print_attributs(self, x, y, w, size,_class):
 		output = ""
 		i = 3
-		for blocs in _class.attributs_bloc.split("-"):
+		for blocs in _class.attributs_bloc.split("|"):
 			output += f'\t<line x1="{x}" y1="{y + i * size}" x2="{x + w}" y2="{y +  i * size}" style="stroke:rgb(0,0,0);stroke-width:1" />\n'
 			i+= 1
-			for attribut in blocs.split(","):
+			for attribut in blocs.split("/"):
 				output += f'\t<text x="{x+5}" y="{y + size * i}"  font-family="Verdana" font-size="{size}" fill="black">{attribut}</text>\n'
 				i+=1
 		return output
