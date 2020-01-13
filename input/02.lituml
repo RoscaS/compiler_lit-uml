@@ -1,20 +1,20 @@
 // Ceci est un commentaire
 //
 {
-    object1("Info"),
+    MaClasse("Info"),
     [
         "attributs",
     ]
 }
 
-{ object2("test"),
+{ UneAutre("test"),
     [
         "attributs",
     ]
 }
 
 {
- object3("<<abstract>>"),
+ ClasseAbstraite("<<abstract>>"),
      [
          "attributs1",
          "attributs2",
@@ -33,7 +33,7 @@
 
 ---
 
-object1 <-- object2
-object2 <-- object1
-object3 <-- object1
+MaClasse <-- UneAutre
+UneAutre <-- MaClasse
+ClasseAbstraite <-- MaClasse
 
