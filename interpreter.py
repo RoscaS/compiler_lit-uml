@@ -6,7 +6,7 @@ janvier 2020
 
 DESCRIPTION
 Module qui permet de récupérer les information de l'arbre.
-Il interprète les noeuds et les envoient dans le svgcreator
+Interprète les noeuds et les envoie dans le svgcreator
 """
 
 import AST

@@ -10,17 +10,19 @@ Class qui permet la création de balise svg
 Il récupère les liens et les classes à afficher
 """
 
-
+# classe qui détient les classes et liens de tout l'arbre
 class SVG:
 	def __init__(self):
 		self.classes = []
 		self.links = []
 		self.id = 0
 
+	# ajoute une classe dans la liste et lui donne un id pour pouvoir l'identifier
 	def add_class(self, name, info):
 		self.classes.append(Class(name, info, self.id))
 		self.id += 1
 
+	# retourne la string de toutes les balises svg
 	def __str__(self):
 		w = 100
 		h = 200
@@ -41,6 +43,7 @@ class SVG:
 		output += '</svg>'
 		return output
 
+	# retourne rectangle avec son nom d'un objet
 	def print_class(self, x, y, w, h, size, _class):
 		_info = _class.info.replace('<', '&lt;').replace('>', '&gt;')
 		output = '<g>\n'
@@ -51,6 +54,7 @@ class SVG:
 		output += '</g>\n'
 		return output
 
+	# retourne les attributs pour une classe
 	def print_attributs(self, x, y, w, size,_class):
 		output = ""
 		i = 3
@@ -62,23 +66,29 @@ class SVG:
 				i+=1
 		return output
 
+	# retourne les liens avec la position de début et de fin
 	def print_link(self, x1, y1, x2, y2, h):
 		output = f'<polyline points = "{x1},{y1} {x1},{y1+h} {x2},{y1+h} {x2},{y2}" style = "fill:none;stroke:black;stroke-width:1"/>\n'
 		output += f'<polyline points = "{x1-10},{y1+10} {x1},{y1} {x1+10},{y1+10}" style = "fill:none;stroke:black;stroke-width:1"/>\n'
 		return output
 
+	# ajout un lien dans la list
 	def add_link(self, class1, assign, class2):
 		self.links.append(Link(class1,assign, class2))
 
+
+	# trouve l'id de la classe
 	def find_id(self, name):
 		for _class in self.classes:
 			if _class.name == name:
 				return _class.id
 		return -1
 
+	# ajout des attributs dans la classe
 	def add_attributs(self,_class, attribut):
 		self.classes[self.find_id(_class)].attributs_bloc = attribut
 
+# classe Class qui définit une classe
 class Class:
 	def __init__(self, name, info, id):
 		self.info = info
@@ -86,7 +96,7 @@ class Class:
 		self.attributs_bloc = ""
 		self.id = id
 
-
+# classe Link qui définit une relation
 class Link:
 	def __init__(self, class1, relation, class2):
 		self.class1 = class1
