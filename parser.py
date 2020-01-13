@@ -74,9 +74,12 @@ def p_classes_end(p):
 
 # Regle pour la dernière classe
 def p_object(p):
-	''' object : IDENTIFIER ',' attributs_bloc
-		| '{' IDENTIFIER  info ',' attributs_blocs '}' '''
-	p[0] = AST.ClassNode(p[2], [p[3]] + [p[5]])
+	''' object : '{' IDENTIFIER  info ',' attributs_blocs '}'
+		|  '{' IDENTIFIER ',' attributs_bloc '}' '''
+	try:
+		p[0] = AST.ClassNode(p[2], [p[3]] + [p[5]])
+	except:
+		p[0] = AST.ClassNode(p[2], [p[4]])
 
 # Regle pour une classe avec le nom, l'information, et les blocs d'attributs
 def p_attributs_blocs(p):
