@@ -1,0 +1,39 @@
+// Ceci est un commentaire
+//
+{
+    object1("Info"),
+    [
+        "attributs",
+    ]
+}
+
+{ object2("test"),
+    [
+        "attributs",
+    ]
+}
+
+{
+ object3("<<abstract>>"),
+     [
+         "attributs1",
+         "attributs2",
+     ],
+    [
+      "attributs1",
+      "attr",
+    ],
+        [
+          "attributs1",
+          "attributs2",
+        ]
+}
+
+
+
+---
+
+object1 <-- object2
+object2 <-- object1
+object3 <-- object1
+
